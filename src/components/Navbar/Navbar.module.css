@@ -1,0 +1,24 @@
+
+.nav1{
+    grid-area: n; /*n- это псевдоним*/
+    background-color: blue;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding: 20px;
+
+
+;
+}
+.item a{
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    padding-top: 10px;
+    padding-left: 20px;
+    text-decoration: none;
+}
+
+.item a.activeLink{
+    color: gold;
+
+}

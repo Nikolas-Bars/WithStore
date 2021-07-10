@@ -1,0 +1,21 @@
+.item{
+    color: steelblue;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: "Courier New";
+}
+.imgg{
+    width: 60px;
+    height: 40px;
+    border-radius: 10px;
+}
+.likes{
+    font-family: "Droid Sans Mono Dotted";
+    font-size: 20px;
+    font-weight: bold;
+    padding-top: 5px;
+
+}
+
+
+

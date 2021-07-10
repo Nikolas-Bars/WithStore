@@ -1,0 +1,25 @@
+.app-wrapper{
+  margin: 0 auto; /* выравниваем посередине */
+  display: grid;
+  width: 1000px;
+    grid-gap: 3px;
+
+
+  grid-template-areas:
+  "h h"  /* тут указываем псевдонимы объявленные ниже *//* мы имеем одну КОЛОНКУ h n и вторую h с */
+  "n c"
+  "z c"      ; /* тут указываем псевдонимы объявленные ниже */
+
+
+    grid-template-rows: 60px 200px 1fr; /* каждое значение - строка. У нас две строки. Первая ВЫСОТОЙ 60px (h) вторая (n и c) в 1 фракцию */
+    grid-template-columns: 2fr 10fr; /*две колонки */
+    /*grid-gap: 10px; /*расстояние между элементами*/
+}
+.app-wrapper-content{
+    grid-area: c;
+    background-color: darkgrey;
+    border-radius: 20px;
+
+
+}
+

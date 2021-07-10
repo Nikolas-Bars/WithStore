@@ -1,0 +1,9 @@
+.header1{
+    grid-area: h; /* h- это псевдоним */
+    background-color: green;
+    border-radius: 20px;
+}
+.header1 img{
+    width:  60px;
+    height: 60px;
+}
