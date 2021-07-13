@@ -1,8 +1,14 @@
-import state from "./Copies/StateCopy";
+import profileReducer from "./profile-reducer";
+import dialogsReducer from "./dialogs-reducer";
+import musicReducer from "./music-reducer";
+import sideBarReducer from "./sideBar-reducer";
+
+
+
 
 let store = {
     _state: {
-        musicComposition:[
+        musicComposition: [
             {}
         ],
         profilePage: {
@@ -10,14 +16,15 @@ let store = {
             posts: [
                 {id: '1', message: 'Hi! How are you?', likeCounts: ' likes: 25'},
                 {id: '1', message: 'It`s my first post.', likeCounts: ' likes: 12'},
-                {id: '1', message: 'Hi! How are you?', likeCounts: ' likes: 38'},
-                {id: '1', message: 'Hi! How are you?', likeCounts: ' likes: 11'},
-                {id: '1', message: 'Hi! How are you?', likeCounts: ' likes: 7'}
+                {id: '1', message: 'Loh!', likeCounts: ' likes: 38'},
+                {id: '1', message: 'Pidr!', likeCounts: ' likes: 11'},
+                {id: '1', message: 'Idi nah!', likeCounts: ' likes: 7'}
             ],
 
         },
+        sideBar: {},
         dialogsPage: {
-            newMessageInTextArea: 'fuck!',
+            newMessageBody: 'fuck!',
             dialogs: [
                 {
                     id: '1',
@@ -69,31 +76,12 @@ let store = {
             ]
         }
     },
-    getState() {
-        debugger
-        return this._state;
-    },
-
-
     _callSubscriber() {
         console.log("state changed")
     }, /*бывшая функция rerenderEntireTree перерисовывает документ*/
-    addPost() {
-        debugger
-        let newPost = {
-            id: 5,
-            message: this._state.profilePage.newPostText, /*this должен обратиться к объекту store,
-            но если весь метод addPost() будет пропущен через props(а props - это тоже объект), то и искать _state он
-            будет в нем, а так как state в props нет, то state будет undefined */
-            likeCounts: 0
-        };
-        this._state.profilePage.posts.push(newPost);
-        this._state.profilePage.newPostText = "";
-        this._callSubscriber(this._state); /*бывшая функция rerenderEntireTree перерисовывает документ*/
-    },
-    upText(text) {
-        this._state.profilePage.newPostText = text;
-        this._callSubscriber(this._state); /*бывшая функция rerenderEntireTree перерисовывает документ*/
+
+    getState() {
+        return this._state;
     },
     subscribe(observer) { /*observer(это паттерн) - это будет функция rerenderEntireTree из index.js*/
         this._callSubscriber = observer;
@@ -101,25 +89,20 @@ let store = {
         в функцию rerenderEntireTree из index.js которую мы передали как аргумент для subscribe*/
     },
 
+    dispatch(action) {
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+        this._state.musicComposition = musicReducer(this._state.musicComposition, action);
+        this._state.sideBar = sideBarReducer(this._state.sideBar, action);
 
-    upNewMessageInTextArea(text) {
-        this._state.dialogsPage.newMessageInTextArea = text;
-        this._callSubscriber(this._state);
-    },
-    upMessageForDialogPage(message) {
-        let newMessages = {
-            id: 7,
-            message: message
+        this._callSubscriber(this._state)
         }
-        this._state.dialogsPage.messages.push(newMessages);
-        this._callSubscriber(this._state);
-    },
-    addComposition(composition){
-        let nameComposition = {name: composition};
-        this._state.musicComposition.push(nameComposition);
-        alert(composition);
-    }
 }
+
+
+
+
+
 
 
 export default store;

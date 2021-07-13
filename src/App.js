@@ -10,7 +10,7 @@ import Music from "./components/Music/Music";
 import {BrowserRouter, Route} from "react-router-dom";
 import Setting from "./components/Setting/Setting";
 import Friends from "./components/Navbar/Friends/Friends";
-import {addPost, upMessageForDialogPage} from "./redux/state";
+import store, {addPost, upMessageForDialogPage} from "./redux/state";
 import {upText} from "./redux/state";
 
 
@@ -24,16 +24,15 @@ debugger
                 <Navbar/>
                 <Friends />
                 <div className='app-wrapper-content'>
-                    <Route path='/dialogs' render={() => <Dialogs state={props.state.dialogsPage}
+                    <Route path='/dialogs' render={() => <Dialogs store={props.store}
                                                                   newMessageInTextArea={props.state.dialogsPage.newMessageInTextArea}
-                                                                  upNewMessageInTextArea={props.upNewMessageInTextArea}
-                                                                  upMessageForDialogPage={props.upMessageForDialogPage} />}/>
-                    <Route path='/profile' render={() => <Profile upText={props.upText}
-                                                                  state={props.state.profilePage}
-                                                                  addPost={props.addPost} />}/> {/*передаем в Profile в props массив posts, который сейчас в index.js*/}
+                                                                  dispatch={props.dispatch} />}/>
+                    <Route path='/profile' render={() => <Profile
+                        dispatch={props.dispatch}
+                        state={props.state.profilePage}/>}/> {/*передаем в Profile в props массив posts, который сейчас в index.js*/}
 
                     <Route path='/news' component={News}/>
-                    <Route path='/music' render={ () => <Music addComposition={props.addComposition}/>}/>
+                    <Route path='/music' render={ () => <Music dispatch={props.dispatch}/>}/>
                     <Route path='/setting' component={Setting}/>
                 </div>
                 {/*<Profile />*/}

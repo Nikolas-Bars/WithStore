@@ -1,3 +1,4 @@
+/*
 import React from 'react'
 import s from './MessageInput.module.css'
 
@@ -8,13 +9,13 @@ const MessageInput = (props) => {
 
     let sendMessageElement = () => {
         let send = refMessage.current.value;
-        props.upMessageForDialogPage(send);
-        props.upNewMessageInTextArea(" ");
+        props.dispatch({type: 'UPMESSAGEFORDIALOGPAGE', message:send});
+        props.dispatch({type: 'UPNEWMESSAGEINTEXTAREA', text:" "});
     }
 
     let addChanged =()=> {
         let text = refMessage.current.value;
-        props.upNewMessageInTextArea(text);
+        props.dispatch ({type: 'UPNEWMESSAGEINTEXTAREA', text: text});
     }
 
     return (
@@ -28,3 +29,4 @@ const MessageInput = (props) => {
 }
 
 export default MessageInput;
+*/

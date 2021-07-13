@@ -4,17 +4,27 @@ import s from './../Dialogs.module.css'
 
 const Message = (props) => {
 
-    let refMessage = React.createRef();
+    return (
+        <div>
+            <div className={s.message}>{props.message}</div>
+        </div>
+    )
+}
+
+export default Message;
+
+
+/*    let refMessage = React.createRef();
 
     let sendMessageElement = () => {
         let send = refMessage.current.value;
         alert(send);
-        props.upNewMessageInTextArea(" ");
+        props.dispatch ({type: 'UPNEWMESSAGEINTEXTAREA', text: ""});
     }
 
   let addChanged =()=> {
     let text = refMessage.current.value;
-    props.upNewMessageInTextArea(text);
+      props.dispatch ({type: 'UPNEWMESSAGEINTEXTAREA', text: text});
   }
 
   /*  <div>
@@ -23,11 +33,5 @@ const Message = (props) => {
     </div>*/
 
 
-    return (
-        <div>
-        <div className={s.message}>{props.message}</div>
-     </div>
-    )
-}
 
-export default Message;
+

@@ -1,5 +1,6 @@
 import React from 'react'
 import s from './Music.module.css'
+import {ADD_COMPOSITION_ActionCreator} from "../../redux/music-reducer";
 
 const Music = (props) => {
 
@@ -7,7 +8,7 @@ const Music = (props) => {
 
     let addCompositionElement =()=>{
         let text = musicLink.current.value;
-        props.addComposition(text);
+        props.dispatch(ADD_COMPOSITION_ActionCreator(text));
     }
 
 

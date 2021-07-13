@@ -1,7 +1,8 @@
 import React from 'react';
 import s from "./MyPosts.module.css"
 import Post from "./Post/Post";
-import state from "../../../redux/state";
+import {addPostActionCreator, UPTEXTActionCreator} from "../../../redux/profile-reducer";
+
 
 const MyPosts = (props) => {             /*в пропсе массив posts который прошел через index - app - profile*/
 
@@ -11,25 +12,34 @@ const MyPosts = (props) => {             /*в пропсе массив posts к
     let postsElement =
         props.posts.map(p => <Post message={p.message} likeCounts={p.likeCounts} />)
 
+
+
+
+
     let addPosts = () => {
-        debugger
-        props.addPost(); /*в качестве аргумента будет state.profilePage.newPostText (уже прописано в самой функции в state.js)*/
+        props.dispatch(addPostActionCreator()); /*в качестве аргумента будет state.profilePage.newPostText (уже прописано в самой функции в state.js)*/
     }
 
     let onPostChange = () => {
         let text = newPostsElement.current.value;
-        props.upText(text);
+        props.dispatch (UPTEXTActionCreator(text));
+
     }
+
+
+
+
+
 
     return (
         <div className={s.postsBlock}>
             <h3>My posts</h3>
             <div>
                 <div>
-                    <textarea ref={newPostsElement} onChange={onPostChange} value={props.newPostText} />
+                    <textarea ref={newPostsElement} className={s.corners} onChange={onPostChange} value={props.newPostText} />
                 </div>
                 <div>
-                    <button onClick={addPosts}>Add Post</button> {/*концепция callback - мы не вызываем ф-ию, а отдаем ее чтобы ее кто-то вызывал*/}
+                    <button className={s.corners} onClick={addPosts}>Add Post</button> {/*концепция callback - мы не вызываем ф-ию, а отдаем ее чтобы ее кто-то вызывал*/}
                 </div><br />
 
             </div>

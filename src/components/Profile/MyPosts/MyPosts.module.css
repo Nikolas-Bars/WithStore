@@ -4,3 +4,7 @@
 .postsBlock{
     padding: 10px;
 }
+.corners{
+    padding: 10px;
+    border-radius: 30px;
+}
