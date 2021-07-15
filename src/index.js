@@ -4,18 +4,18 @@ import store from "./redux/redux-store";
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import storeContext, {Provider} from "./storeContext";
 
 
 let rerenderEntireTree = (state) =>      /*в круглых скобках - параметр, аргументом будет store.getState() - смотри ниже*/
 {debugger
     ReactDOM.render(
         <React.StrictMode>
-            <App store={store}
-                state={state}
-                 dispatch={store.dispatch.bind(store)}
-                 newMessageInTextArea={state.dialogsPage.newMessageInTextArea}
-                /> {/*передаем APP массив с данными state*/}
 
+
+                <Provider store={store} >
+                <App store={store}/> {/*передаем APP массив с данными state*/}
+         </Provider>
         </React.StrictMode>,
         document.getElementById('root')
     );

@@ -13,6 +13,7 @@ import Friends from "./components/Navbar/Friends/Friends";
 import store, {addPost, upMessageForDialogPage} from "./redux/store";
 import {upText} from "./redux/store";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
+import MusicContainer from "./components/Music/MusicContainer";
 
 
 const App = (props) => {
@@ -29,7 +30,7 @@ const App = (props) => {
                     <Route path='/profile' render={() => <Profile store = {props.store}/>}/> {/*передаем в Profile в props массив posts, который сейчас в index.js*/}
 
                     <Route path='/news' component={News}/>
-                    <Route path='/music' render={ () => <Music dispatch={props.dispatch} />} />
+                    <Route path='/music' render={ () => <MusicContainer />} />
                     <Route path='/setting' component={Setting} />
                 </div>
                 {/*<Profile />*/}
