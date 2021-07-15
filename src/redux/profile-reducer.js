@@ -1,7 +1,19 @@
 const ADD_POST = 'ADD-POST';
 const UP_TEXT = 'UPTEXT';
 
-const profileReducer = (state, action) => {
+let initialState = {
+        newPostText: 'it-kamasutra',
+        posts: [
+        {id: '1', message: 'Hi! How are you?', likeCounts: ' likes: 25'},
+        {id: '1', message: 'It`s my first post.', likeCounts: ' likes: 12'},
+        {id: '1', message: 'Loh!', likeCounts: ' likes: 38'},
+        {id: '1', message: 'Pidr!', likeCounts: ' likes: 11'},
+        {id: '1', message: 'Idi nah!', likeCounts: ' likes: 7'}
+    ],
+
+}
+
+const profileReducer = (state = initialState, action) => { // присвоили state значение по умолчанию
 
     switch (action.type) {
         case ADD_POST:

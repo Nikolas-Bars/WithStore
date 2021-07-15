@@ -7,7 +7,7 @@ import sideBarReducer from "./sideBar-reducer";
 
 
 let store = {
-    _state: {
+   /* _state: {
         musicComposition: [
             {}
         ],
@@ -80,23 +80,22 @@ let store = {
         console.log("state changed")
     }, /*бывшая функция rerenderEntireTree перерисовывает документ*/
 
-    getState() {
+    /*getState() {
         return this._state;
     },
-    subscribe(observer) { /*observer(это паттерн) - это будет функция rerenderEntireTree из index.js*/
-        this._callSubscriber = observer;
+    /*subscribe(observer) { /*observer(это паттерн) - это будет функция rerenderEntireTree из index.js*/
+     /*   this._callSubscriber = observer;
         /*мы превращаем функцию rerenderEntireTree(пустая функция объявленная в начале этого файла )
-        в функцию rerenderEntireTree из index.js которую мы передали как аргумент для subscribe*/
-    },
+        в функцию rerenderEntireTree из index.js которую мы передали как аргумент для subscribe},*/
 
-    dispatch(action) {
+    /*dispatch(action) {
         this._state.profilePage = profileReducer(this._state.profilePage, action);
         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
         this._state.musicComposition = musicReducer(this._state.musicComposition, action);
         this._state.sideBar = sideBarReducer(this._state.sideBar, action);
 
         this._callSubscriber(this._state)
-        }
+        } */
 }
 
 

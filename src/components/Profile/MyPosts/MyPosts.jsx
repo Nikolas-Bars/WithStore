@@ -6,31 +6,20 @@ import {addPostActionCreator, UPTEXTActionCreator} from "../../../redux/profile-
 
 const MyPosts = (props) => {             /*в пропсе массив posts который прошел через index - app - profile*/
 
-    let newPostsElement = React.createRef();
-
-
     let postsElement =
         props.posts.map(p => <Post message={p.message} likeCounts={p.likeCounts} />)
 
+    let newPostsElement = React.createRef();
 
-
-
-
-    let addPosts = () => {
-        props.dispatch(addPostActionCreator()); /*в качестве аргумента будет state.profilePage.newPostText (уже прописано в самой функции в state.js)*/
+    let OnAddPost = () => {
+        props.addPost()
+        /*в качестве аргумента будет state.profilePage.newPostText (уже прописано в самой функции в state.js)*/
     }
 
     let onPostChange = () => {
         let text = newPostsElement.current.value;
-        props.dispatch (UPTEXTActionCreator(text));
-
+        props.updateNewPostText(text)
     }
-
-
-
-
-
-
     return (
         <div className={s.postsBlock}>
             <h3>My posts</h3>
@@ -39,7 +28,7 @@ const MyPosts = (props) => {             /*в пропсе массив posts к
                     <textarea ref={newPostsElement} className={s.corners} onChange={onPostChange} value={props.newPostText} />
                 </div>
                 <div>
-                    <button className={s.corners} onClick={addPosts}>Add Post</button> {/*концепция callback - мы не вызываем ф-ию, а отдаем ее чтобы ее кто-то вызывал*/}
+                    <button className={s.corners} onClick={OnAddPost}>Add Post</button> {/*концепция callback - мы не вызываем ф-ию, а отдаем ее чтобы ее кто-то вызывал*/}
                 </div><br />
 
             </div>

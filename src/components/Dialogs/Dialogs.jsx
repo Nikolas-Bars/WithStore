@@ -7,24 +7,21 @@ import Message from "./Message/Message";
 import {sendMessageCreator, updateNewMessageBodyCreator} from "../../redux/dialogs-reducer";
 
 const Dialogs = (props) => {
+    let state = props.dialogsPage;
 
-
-    let state = props.store.getState().dialogsPage;
-    debugger
     let dialogsElements = state.dialogs.map(d => <DialogItem name={d.name} id={d.id} img={d.img}/> );
     let messagesElement = state.messages.map(m => <Message message={m.message} />)
 
 
+    let onSendMessageClick = () =>{
+        props.onMessageClick()
+    }
 
-    let newMessageBody = state.newMessageBody;
     let onNewMessageChange =(e)=>{
         let body = e.target.value;
-        props.store.dispatch(updateNewMessageBodyCreator(body))
+        props.updateNewMessageBody(body)
     }
 
-    let onMessageClick = () =>  {
-        props.store.dispatch(sendMessageCreator())
-    }
 
 
     return (
@@ -36,8 +33,8 @@ const Dialogs = (props) => {
             <div className={s.messages}>
                 <div>{messagesElement}</div>
                 <div>
-                    <div><textarea value={newMessageBody} onChange={onNewMessageChange} placeholder = "enter new message" /></div>
-                    <div><button onClick={onMessageClick}>Send</button></div>
+                    <div><textarea value={props.newMessageBody} onChange={onNewMessageChange} placeholder = "enter new message" /></div>
+                    <div><button onClick={onSendMessageClick}>Send</button></div>
                 </div>
             </div>
 

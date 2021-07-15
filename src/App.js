@@ -10,13 +10,14 @@ import Music from "./components/Music/Music";
 import {BrowserRouter, Route} from "react-router-dom";
 import Setting from "./components/Setting/Setting";
 import Friends from "./components/Navbar/Friends/Friends";
-import store, {addPost, upMessageForDialogPage} from "./redux/state";
-import {upText} from "./redux/state";
+import store, {addPost, upMessageForDialogPage} from "./redux/store";
+import {upText} from "./redux/store";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 
 const App = (props) => {
 
-debugger
+
     return (
         <BrowserRouter>
             <div className="app-wrapper">
@@ -24,16 +25,12 @@ debugger
                 <Navbar/>
                 <Friends />
                 <div className='app-wrapper-content'>
-                    <Route path='/dialogs' render={() => <Dialogs store={props.store}
-                                                                  newMessageInTextArea={props.state.dialogsPage.newMessageInTextArea}
-                                                                  dispatch={props.dispatch} />}/>
-                    <Route path='/profile' render={() => <Profile
-                        dispatch={props.dispatch}
-                        state={props.state.profilePage}/>}/> {/*передаем в Profile в props массив posts, который сейчас в index.js*/}
+                    <Route path='/dialogs' render={() => <DialogsContainer store={props.store}  />}/>
+                    <Route path='/profile' render={() => <Profile store = {props.store}/>}/> {/*передаем в Profile в props массив posts, который сейчас в index.js*/}
 
                     <Route path='/news' component={News}/>
-                    <Route path='/music' render={ () => <Music dispatch={props.dispatch}/>}/>
-                    <Route path='/setting' component={Setting}/>
+                    <Route path='/music' render={ () => <Music dispatch={props.dispatch} />} />
+                    <Route path='/setting' component={Setting} />
                 </div>
                 {/*<Profile />*/}
             </div>

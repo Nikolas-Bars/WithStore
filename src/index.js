@@ -1,13 +1,13 @@
 import React from 'react';
 import reportWebVitals from './reportWebVitals';
-import store from "./redux/state";
+import store from "./redux/redux-store";
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 
 
 let rerenderEntireTree = (state) =>      /*в круглых скобках - параметр, аргументом будет store.getState() - смотри ниже*/
-{
+{debugger
     ReactDOM.render(
         <React.StrictMode>
             <App store={store}
@@ -23,8 +23,11 @@ let rerenderEntireTree = (state) =>      /*в круглых скобках - п
 
 
 reportWebVitals();
-rerenderEntireTree(store.getState());
-store.subscribe(rerenderEntireTree);
+rerenderEntireTree(store.getState());  /*ЭТОТ STORE ТЕПЕРЬ ВЫЗЫВАЕТСЯ ИЗ REDUX */
+store.subscribe( () => {
+    let state = store.getState();
+    rerenderEntireTree(state)
+}); /*ЭТОТ STORE ТЕПЕРЬ ВЫЗЫВАЕТСЯ ИЗ REDUX */
 
 
 

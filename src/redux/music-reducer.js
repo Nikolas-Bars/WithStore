@@ -1,10 +1,17 @@
 const ADD_COMPOSITION = 'ADD-COMPOSITION';
 
-const musicReducer =(state, action)=> {
+let initialState = {
+
+    music: [
+        {}
+        ]
+}
+
+const musicReducer =(state = initialState, action)=> {
 
     if (action.type === ADD_COMPOSITION) {
         let nameComposition = {name: action.composition};
-        state.push(nameComposition);
+        state.music.push(nameComposition);
         alert(action.composition);
     }
 
