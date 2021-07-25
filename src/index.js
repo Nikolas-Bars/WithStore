@@ -4,30 +4,22 @@ import store from "./redux/redux-store";
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import storeContext, {Provider} from "./storeContext";
+import {Provider} from "react-redux";
 
 
-let rerenderEntireTree = (state) =>      /*в круглых скобках - параметр, аргументом будет store.getState() - смотри ниже*/
-{debugger
+
+
     ReactDOM.render(
         <React.StrictMode>
-
-
-                <Provider store={store} >
-                <App store={store}/> {/*передаем APP массив с данными state*/}
-         </Provider>
-        </React.StrictMode>,
-        document.getElementById('root')
+            <Provider store={store}>
+                <App />
+            </Provider>
+        </React.StrictMode>, document.getElementById('root')
     );
-}
 
 
 reportWebVitals();
-rerenderEntireTree(store.getState());  /*ЭТОТ STORE ТЕПЕРЬ ВЫЗЫВАЕТСЯ ИЗ REDUX */
-store.subscribe( () => {
-    let state = store.getState();
-    rerenderEntireTree(state)
-}); /*ЭТОТ STORE ТЕПЕРЬ ВЫЗЫВАЕТСЯ ИЗ REDUX */
+ /*ЭТОТ STORE ТЕПЕРЬ ВЫЗЫВАЕТСЯ ИЗ REDUX */
 
 
 

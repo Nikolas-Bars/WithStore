@@ -1,7 +1,7 @@
 import React from 'react';
 import s from "./MyPosts.module.css"
 import Post from "./Post/Post";
-import {addPostActionCreator, UPTEXTActionCreator} from "../../../redux/profile-reducer";
+
 
 
 const MyPosts = (props) => {             /*в пропсе массив posts который прошел через index - app - profile*/

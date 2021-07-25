@@ -1,25 +1,26 @@
 import React from 'react'
-import s from './Music.module.css'
 import {ADD_COMPOSITION_ActionCreator} from "../../redux/music-reducer";
 import Music from "./Music";
-import storeContext from "../../storeContext";
-
-debugger
+import {connect} from "react-redux";
 
 
-const MusicContainer = (props) => {
-    return <storeContext.Consumer>{
-        (store)=> {
-            let ADD_COMP = (text) => {
-                let action = ADD_COMPOSITION_ActionCreator(text)
-                store.dispatch(action);
-            }
 
-            return (
-                <Music Add_Comp={ADD_COMP}/>
-            )
-        }
-    }</storeContext.Consumer>
+
+
+let mapStateToProps =()=>{
+    return{
+
+    }
 }
+let mapDispatchToProps =(dispatch)=> {
+    return{
+        Add_Comp: (text)=>  {
+            dispatch(ADD_COMPOSITION_ActionCreator(text))
+        }
+    }
+}
+
+
+const MusicContainer = connect(mapStateToProps, mapDispatchToProps)(Music)
 
 export default MusicContainer;
