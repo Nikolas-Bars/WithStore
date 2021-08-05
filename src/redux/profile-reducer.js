@@ -1,8 +1,12 @@
+import Preloader from "../components/common/Preloader/Preloader";
+
 const ADD_POST = 'ADD-POST';
 const UP_TEXT = 'UPTEXT';
+const SET_USER_PROFILE = 'SET_USER_PROFILE'
 
 let initialState = {
     newPostText: 'it-kamasutra',
+    profile: null,
     posts: [
         {id: '1', message: 'Hi! How are you?', likeCounts: ' likes: 25'},
         {id: '1', message: 'It`s my first post.', likeCounts: ' likes: 12'},
@@ -34,6 +38,12 @@ const profileReducer = (state = initialState, action) => { // присвоили
             stateCopy.newPostText = action.text;
             return stateCopy;
         }
+        case SET_USER_PROFILE: {
+            return {
+                ...state,
+                profile: action.profile
+            }
+        }
         default:
             return state;
 
@@ -42,6 +52,8 @@ const profileReducer = (state = initialState, action) => { // присвоили
 export const addPostActionCreator = () => ({type: ADD_POST})
 
 export const UPTEXTActionCreator =(text) => ({type: UP_TEXT, text: text})
+
+export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile})
 
 
 export default profileReducer;

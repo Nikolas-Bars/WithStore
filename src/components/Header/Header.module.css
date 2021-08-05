@@ -13,3 +13,12 @@
 .text{
 
 }
+.auth {
+    float: right;
+    margin: 10px;
+    font-family: "Californian FB";
+    font-weight: bold;
+    border-radius: 20px;
+    padding: 10px;
+
+}
