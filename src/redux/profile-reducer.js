@@ -1,4 +1,5 @@
 import Preloader from "../components/common/Preloader/Preloader";
+import {userAPI} from "../API/api";
 
 const ADD_POST = 'ADD-POST';
 const UP_TEXT = 'UPTEXT';
@@ -53,7 +54,11 @@ export const addPostActionCreator = () => ({type: ADD_POST})
 
 export const UPTEXTActionCreator =(text) => ({type: UP_TEXT, text: text})
 
-export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile})
-
+// export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile})
+export const getUserProfile = (userId) => (dispatch) => {
+    userAPI.getProfile(userId).then(response => {
+        dispatch({type: SET_USER_PROFILE, profile: response.data})
+    })
+}
 
 export default profileReducer;

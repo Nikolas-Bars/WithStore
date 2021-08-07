@@ -1,10 +1,10 @@
 import React from "react";
 import s from './Users.module.css'
 import {NavLink} from "react-router-dom";
-import * as axios from "axios";
+import Redirect from "react-router-dom/es/Redirect";
 const Users = (props) => {
+        debugger
 
-debugger
        let pagesCount = Math.ceil(props.totalUserCount / props.pageSize)
 
 
@@ -13,7 +13,7 @@ debugger
         for (let i = 1; i <= pagesCount; i++){
             pages.push(i);
         }
-
+        if(!props.isAuth) return <Redirect to='/login'/>
         return <div>
             <div>
                 {pages.map(p =>{
@@ -37,29 +37,11 @@ debugger
 
 
                     {u.followed
-                        ? <button onClick={() =>
-                            axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,
-                                {
-                           withCredentials: true,
-                                    headers: {
-                               'API-KEY': '7b9d1cc8-4923-4bd6-ab91-3bbcd69e7ad2'
-                                    }
-
-                            }).then(response => {
-                                if(response.data.resultCode === 0){
-                                    props.unfollows(u.id)
-                                }})}>unfollow</button>
-                        : <button onClick={() =>
-                            axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {},
-                        {
-                            withCredentials: true,
-                            headers: {
-                            'API-KEY': '7b9d1cc8-4923-4bd6-ab91-3bbcd69e7ad2'
-                        }}
-                        ).then(response => {
-                        if(response.data.resultCode === 0){
-                        props.follows(u.id)
-                    }})}>follow</button>
+                        ? <button disabled={props.followingProgress.some(jopa => jopa === u.id)} onClick={() =>{
+                            props.unfollowThunk(u.id)
+                            }}>unfollow</button>
+                        : <button disabled={props.followingProgress.some(id => id === u.id)} onClick={() =>{
+                            props.followThunk(u.id)}}>follow</button>
                     }
 
 
