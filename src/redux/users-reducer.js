@@ -8,13 +8,15 @@ const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT'
 const TOGGLE = 'TOGGLE'
 const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS'
 
+
 let initialState = {
     users: [],
     pageSize: 100,
     totalUserCount: 20,
     currentPage: 1,
     IsFetching: true,
-    followingProgress: []
+    followingProgress: [],
+    FAKE: 0
 }
 
 const usersReduser = (state = initialState, action) => {
@@ -27,6 +29,11 @@ const usersReduser = (state = initialState, action) => {
                         return {...u, followed: true}
                      }return u;
                 })
+            }
+        case 'FAKE':
+            return {
+                ...state,
+                FAKE: state.FAKE += 1
             }
         case UNFOLLOW:
             return {
@@ -82,6 +89,7 @@ export const setCurrentPage =(pageNumber)=> ({type: SET_CURRENT_PAGE, currentPag
 export const setTotalUsersCount = (count) => ({type: SET_TOTAL_USERS_COUNT, count: count})
 export const toggleIsFetching = (IsFetching) => ({type: TOGGLE, IsFetching:IsFetching})
 export const toggleFollowingProgress = (userId, IsFetching) => ({type: TOGGLE_IS_FOLLOWING_PROGRESS, userId, IsFetching})
+
 
 export const getUsersCreator = (currentPage, pageSize) => (dispatch) =>{
     dispatch(toggleIsFetching(true))

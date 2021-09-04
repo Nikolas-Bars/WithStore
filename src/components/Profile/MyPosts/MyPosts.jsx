@@ -1,36 +1,35 @@
 import React from 'react';
 import s from "./MyPosts.module.css"
 import Post from "./Post/Post";
+import {Field, reduxForm} from "redux-form";
+import {
+    maxLengthCreator,
+    minLengthCreator,
+    required
+} from "../../../utils/validators/validators";
+import {textArea} from "../../common/FormsControls/FormsControls";
 
+let maxLength = maxLengthCreator(30)
 
+let minLength = minLengthCreator(5)
 
 const MyPosts = (props) => {             /*в пропсе массив posts который прошел через index - app - profile*/
 
     let postsElement =
         props.posts.map(p => <Post message={p.message} likeCounts={p.likeCounts} />)
 
-    let newPostsElement = React.createRef();
-
-    let OnAddPost = () => {
-        props.addPost()
+      let OnAddPost = (jopa) => {
+        props.addPost(jopa.MyPostTextarea)
         /*в качестве аргумента будет state.profilePage.newPostText (уже прописано в самой функции в state.js)*/
     }
 
-    let onPostChange = () => {
-        let text = newPostsElement.current.value;
-        props.updateNewPostText(text)
-    }
+
+
     return (
         <div className={s.postsBlock}>
             <h3>My posts</h3>
             <div>
-                <div>
-                    <textarea ref={newPostsElement} className={s.corners} onChange={onPostChange} value={props.newPostText} />
-                </div>
-                <div>
-                    <button className={s.corners} onClick={OnAddPost}>Add Post</button> {/*концепция callback - мы не вызываем ф-ию, а отдаем ее чтобы ее кто-то вызывал*/}
-                </div><br />
-
+                <AddNewPostsFormRedux onSubmit={OnAddPost} />
             </div>
 
             <div className={s.posts}>
@@ -48,4 +47,31 @@ const MyPosts = (props) => {             /*в пропсе массив posts к
 
     )
 }
+
+
+
+
+    const AddNewPostsForm = (props) =>{
+
+        return(<form onSubmit={props.handleSubmit}>
+        <div>
+           <Field component={textArea} name={'MyPostTextarea'} placeholder={'Your new post'} validate={[required, maxLength, minLength]} />
+        </div>
+            <button>Add Post</button>
+        </form>
+
+    )
+}
+
+const AddNewPostsFormRedux = reduxForm({form: 'NewPost'})(AddNewPostsForm)
+
+
+
 export default MyPosts;
+
+{/* <div>
+        <textarea ref={newPostsElement} className={s.corners} onChange={onPostChange} value={props.newPostText} />
+    </div>
+    <div>
+        <button className={s.corners} onClick={OnAddPost}>Add Post</button> {/*концепция callback - мы не вызываем ф-ию, а отдаем ее чтобы ее кто-то вызывал*/}
+

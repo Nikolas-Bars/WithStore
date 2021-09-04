@@ -58,17 +58,9 @@ let initialState = {
 const dialogsReducer = (state = initialState, action) => {
     switch (action.type) {
 
-        case UPDATE_NEW_MESSAGE_BODY: {
-            let stateCopy = {...state}
-            stateCopy.newMessageBody = action.body;
-            return stateCopy;
-        }
-
-
         case  SEND_NEW_MESSAGE_BODY:{
             let stateCopy = {...state}
-            let body = state.newMessageBody;
-            stateCopy.newMessageBody = "";
+            let body = action.DialogsText;
             stateCopy.messages.push({id: 10, message: body});
             return stateCopy;
         }
@@ -79,7 +71,7 @@ const dialogsReducer = (state = initialState, action) => {
     return state;
 }
 
-export const sendMessageCreator = () => ({type: SEND_NEW_MESSAGE_BODY})
+export const sendMessageCreator = (DialogsText) => ({type: SEND_NEW_MESSAGE_BODY, DialogsText})
 
 export const updateNewMessageBodyCreator= (body) => ({type: UPDATE_NEW_MESSAGE_BODY, body: body})
 

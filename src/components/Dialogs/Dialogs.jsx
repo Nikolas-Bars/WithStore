@@ -4,6 +4,11 @@ import s from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import Redirect from "react-router-dom/es/Redirect";
+import {Field, reduxForm} from "redux-form";
+import {maxLengthCreator, minLengthCreator, required} from "../../utils/validators/validators";
+import {AddNewMessageFormRedux} from "./Message/AddMessageForm";
+
+
 
 const Dialogs = (props) => {
 
@@ -13,16 +18,9 @@ const Dialogs = (props) => {
     let messagesElement = state.messages.map(m => <Message message={m.message} />)
 
 
-    let onSendMessageClick = () =>{
-        props.sendMessage()
+    let AddNewMessage = (jopa) =>{
+        props.sendMessage(jopa.NewMessage)
     }
-
-    let onNewMessageChange =(e)=>{
-        let body = e.target.value;
-        props.updateNewMessageBody(body)
-    }
-
-    let newMessageBody = props.dialogsPage.newMessageBody;
 
     if(!props.isAuth) return <Redirect to='/login' />
 
@@ -34,15 +32,17 @@ const Dialogs = (props) => {
 
             <div className={s.messages}>
                 <div>{messagesElement}</div>
-                <div>
-                    <div><textarea value={newMessageBody} onChange={onNewMessageChange} placeholder = "enter new message" /></div>
-                    <div><button onClick={onSendMessageClick}>Send</button></div>
-                </div>
+               <AddNewMessageFormRedux onSubmit={AddNewMessage}/>
             </div>
-
-
         </div>
     )
 }
 
+
+
 export default Dialogs;
+
+/*<div>
+    <div><textarea value={newMessageBody} onChange={onNewMessageChange} placeholder = "enter new message" /></div>
+    <div><button onClick={onSendMessageClick}>Send</button></div>
+</div>*/

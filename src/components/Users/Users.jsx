@@ -3,7 +3,7 @@ import s from './Users.module.css'
 import {NavLink} from "react-router-dom";
 import Redirect from "react-router-dom/es/Redirect";
 const Users = (props) => {
-        debugger
+
 
        let pagesCount = Math.ceil(props.totalUserCount / props.pageSize)
 
@@ -13,7 +13,7 @@ const Users = (props) => {
         for (let i = 1; i <= pagesCount; i++){
             pages.push(i);
         }
-        if(!props.isAuth) return <Redirect to='/login'/>
+
         return <div>
             <div>
                 {pages.map(p =>{

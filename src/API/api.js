@@ -5,7 +5,7 @@ const instance = axios.create ({
     withCredentials: true,
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
     headers: {
-        'API-KEY': '7b9d1cc8-4923-4bd6-ab91-3bbcd69e7ad2'
+        'API-KEY': '0a240200-39b6-4234-b041-5fc101063f21'
     }
 })
 
@@ -23,8 +23,20 @@ export const userAPI = {
         withCredentials: true
     })}, вынесли отдельно в authMe.me */
     getProfile(userId){
-        return instance.get(`profile/${userId}`)
+        return ProfileAPI.getProfile(userId)
 }
+}
+
+export const ProfileAPI = {
+    getProfile(userId){
+        return instance.get(`profile/${userId}`)
+    },
+    getStatus(userId){
+        return instance.get(`profile/status/${userId}`)
+    },
+    updateStatus(status){
+        return instance.put(`/profile/status`, {status: status})
+    }
 }
 
 export const authAPI = {
@@ -32,5 +44,18 @@ export const authAPI = {
         return instance.get(`auth/me`, {
             withCredentials: true
         })
+    },
+    login(email, password, rememberMe){
+        return instance.post(`auth/login`, {email, password, rememberMe})
+
+    },
+    logout (){
+        return instance.delete(`auth/login`)
+    }
+}
+
+export const loginAPI = {
+    login(){
+        return instance.post(`/auth/login`)
     }
 }

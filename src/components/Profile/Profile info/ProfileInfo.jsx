@@ -1,6 +1,7 @@
 import React from 'react';
 import s from "./ProfileInfo.module.css"
 import Preloader from "../../common/Preloader/Preloader";
+import ProfileStatus from "./ProfileStatus";
 const ProfileInfo = (props) =>{
 
     if (!props.profile){  //если props.profile = null или undefined
@@ -9,12 +10,13 @@ const ProfileInfo = (props) =>{
 
     return  (
         <div>
-            <div>
+            {/* <div>
                 <img className={s.img} src="https://static.prian.ru/uploads/2021_07/1/20210701133751780428393.jpg" />
-            </div>
+            </div>*/}
             <div className={s.descriptionBlock}>
                 <img className={s.avatar} src={props.profile.photos.small} /><br/>
-                My avatar and description
+                <ProfileStatus status={props.status} updateStatusThunk={props.updateStatusThunk}/>
+
             </div>
             <div>
 

@@ -1,6 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import {
+    FakeCreator,
     follow,
     getUsersCreator, setCurrentPage,
     setTotalUsersCount,
@@ -9,6 +10,16 @@ import {
 } from "../../redux/users-reducer";
 import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader";
+import withAuthRedirect from "../../hoc/withAuthRedirectComponent";
+import {compose} from "redux";
+import {
+    getCurrentPage,
+    getFollowingProgress,
+    getIsFetching,
+    getPageSize,
+    getTotalUserCount,
+    getUsers
+} from "../../redux/users-selectors";
 
 
 
@@ -59,7 +70,7 @@ class UsersAPI extends React.Component {
 }
 
 
-let mapStateToProps = (state) => {
+/*let mapStateToProps = (state) => {
 
     return {
         users: state.usersPage.users,
@@ -68,7 +79,21 @@ let mapStateToProps = (state) => {
         currentPage: state.usersPage.currentPage,
         IsFetching: state.usersPage.IsFetching,
         followingProgress: state.usersPage.followingProgress,
-        isAuth: state.auth.isAuth
+
+    }
+}*/
+
+
+
+let mapStateToProps = (state) => {
+    console.log('jopa')
+    return {
+        users: getUsers(state),
+        pageSize: getPageSize(state),
+        totalUserCount: getTotalUserCount(state),
+        currentPage: getCurrentPage(state),
+        IsFetching: getIsFetching(state),
+        followingProgress: getFollowingProgress(state)
     }
 }
 /* let mapDispatchToProps
@@ -83,7 +108,8 @@ let mapStateToProps = (state) => {
     }
 } */
 
-export default connect(mapStateToProps, {
+
+export default compose(connect(mapStateToProps, {
 
     setUsers,
     setCurrentPage,
@@ -95,4 +121,4 @@ export default connect(mapStateToProps, {
     followThunk: follow,
 
 
-})(UsersAPI)
+}))(UsersAPI)
