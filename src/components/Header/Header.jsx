@@ -1,6 +1,5 @@
 import React from 'react';
 import s from "./Header.module.css"
-import {NavLink} from "react-router-dom";
 import logo from '../../img/logo.png'
 const Header = (props) =>{
 
@@ -13,7 +12,7 @@ const Header = (props) =>{
                 ? <div className={s.auth}>{props.login} - <button onClick={props.logout}>Logout</button></div>
                 : <div><button className={s.auth}>Fuck!</button> </div>}
 
-            <div><img src={logo} alt="logo"  /> </div>
+            <div><img src={logo} alt="logo" /> </div>
         </div>
     );
 }

@@ -10,7 +10,6 @@ import {
 } from "../../redux/users-reducer";
 import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader";
-import withAuthRedirect from "../../hoc/withAuthRedirectComponent";
 import {compose} from "redux";
 import {
     getCurrentPage,
@@ -18,7 +17,7 @@ import {
     getIsFetching,
     getPageSize,
     getTotalUserCount,
-    getUsers
+    getUsers, getUsersSuperSelector
 } from "../../redux/users-selectors";
 
 
@@ -89,6 +88,7 @@ let mapStateToProps = (state) => {
     console.log('jopa')
     return {
         users: getUsers(state),
+        //users: getUsers(state),
         pageSize: getPageSize(state),
         totalUserCount: getTotalUserCount(state),
         currentPage: getCurrentPage(state),

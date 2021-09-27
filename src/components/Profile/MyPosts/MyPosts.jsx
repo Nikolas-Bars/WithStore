@@ -2,39 +2,34 @@ import React from 'react';
 import s from "./MyPosts.module.css"
 import Post from "./Post/Post";
 import {Field, reduxForm} from "redux-form";
-import {
-    maxLengthCreator,
-    minLengthCreator,
-    required
-} from "../../../utils/validators/validators";
+import {maxLengthCreator, minLengthCreator, required} from "../../../utils/validators/validators";
 import {textArea} from "../../common/FormsControls/FormsControls";
 
 let maxLength = maxLengthCreator(30)
 
 let minLength = minLengthCreator(5)
 
-const MyPosts = (props) => {             /*в пропсе массив posts который прошел через index - app - profile*/
-
+function MyPosts(props) {             /*в пропсе массив posts который прошел через index - app - profile*/
+    console.log('componentDidUpdateYO')
     let postsElement =
-        props.posts.map(p => <Post message={p.message} likeCounts={p.likeCounts} />)
+        [...props.posts].reverse().map(p => <Post message={p.message} likeCounts={p.likeCounts}/>)
 
-      let OnAddPost = (jopa) => {
+    let OnAddPost = (jopa) => {
         props.addPost(jopa.MyPostTextarea)
         /*в качестве аргумента будет state.profilePage.newPostText (уже прописано в самой функции в state.js)*/
     }
-
 
 
     return (
         <div className={s.postsBlock}>
             <h3>My posts</h3>
             <div>
-                <AddNewPostsFormRedux onSubmit={OnAddPost} />
+                <AddNewPostsFormRedux onSubmit={OnAddPost}/>
             </div>
 
             <div className={s.posts}>
                 {postsElement}
-               {/* <Post message={postsData[0].message} likeCounts={postsData[0].likeCounts}/>
+                {/* <Post message={postsData[0].message} likeCounts={postsData[0].likeCounts}/>
                 <Post message={postsData[1].message} likeCounts={postsData[1].likeCounts}/>
                 <Post likeCounts={postsData[2].likeCounts} />
                 <Post likeCounts={postsData[3].likeCounts} />
@@ -49,9 +44,7 @@ const MyPosts = (props) => {             /*в пропсе массив posts к
 }
 
 
-
-
-    const AddNewPostsForm = (props) =>{
+const AddNewPostsForm = (props) =>{
 
         return(<form onSubmit={props.handleSubmit}>
         <div>

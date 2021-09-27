@@ -15,6 +15,7 @@ import {connect} from "react-redux";
 import {compose} from "redux";
 import {initializeApp} from "./redux/app-reduser";
 import Preloader from "./components/common/Preloader/Preloader";
+import Clock from "./components/test/test";
 
 
 class App extends React.Component {
@@ -25,7 +26,7 @@ class App extends React.Component {
 
     render() {
         if(!this.props.initialize){
-            debugger
+
             return <Preloader />
         }
         return (
@@ -43,6 +44,8 @@ class App extends React.Component {
                         <Route path='/music' render={() => <MusicContainer/>}/>
                         <Route path='/setting' component={Setting}/>
                         <Route path='/login' component={Login}/>
+
+
                     </div>
                     {/*<Profile />*/}
                 </div>

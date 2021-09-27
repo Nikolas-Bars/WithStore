@@ -1,5 +1,6 @@
 import React from 'react'
 import s from './Music.module.css'
+import Clock from "../test/test";
 
 
 const Music = (props) => {
@@ -15,7 +16,10 @@ const Music = (props) => {
 
 
     return (
+
+
         <div className={s.music}>
+            <Clock />
             <p>Самые популярные хиты последних месяцев!</p>
             <textarea ref={musicLink} placeholder='Напишите вашу любимую композицию' />
             <button onClick={addCompositionElement}>send</button>
