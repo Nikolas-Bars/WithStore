@@ -1,12 +1,9 @@
 import React from 'react'
 import s from './Dialogs.module.css'
-
-import DialogItem from "./DialogItem/DialogItem";
-import Message from "./Message/Message";
-import Redirect from "react-router-dom/es/Redirect";
-import {Field, reduxForm} from "redux-form";
-import {maxLengthCreator, minLengthCreator, required} from "../../utils/validators/validators";
+import DialogItem from "../Dialogs/DialogItem/DialogItem";
+import Message from "../Dialogs/Message/Message";
 import {AddNewMessageFormRedux} from "./Message/AddMessageForm";
+import {Redirect} from "react-router-dom";
 
 
 

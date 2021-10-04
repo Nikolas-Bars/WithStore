@@ -1,4 +1,4 @@
-import {applyMiddleware, combineReducers, createStore} from "redux";
+import {applyMiddleware, combineReducers, compose, createStore} from "redux";
 import dialogsReducer from "./dialogs-reducer";
 import musicReducer from "./music-reducer";
 import profileReducer from "./profile-reducer";
@@ -21,10 +21,9 @@ let redusers = combineReducers({
 
 });
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(redusers,  composeEnhancers(applyMiddleware(thunkMiddleware)
+));
 
-
-let store = createStore(redusers,applyMiddleware(thunkMiddleware));
-
-window.stort = store
 
 export default store
