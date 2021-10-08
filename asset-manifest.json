@@ -1,0 +1,35 @@
+{
+  "files": {
+    "main.css": "/Demo-samurai/static/css/main.1ae7170d.chunk.css",
+    "main.js": "/Demo-samurai/static/js/main.4b492cd6.chunk.js",
+    "main.js.map": "/Demo-samurai/static/js/main.4b492cd6.chunk.js.map",
+    "runtime-main.js": "/Demo-samurai/static/js/runtime-main.249b059d.js",
+    "runtime-main.js.map": "/Demo-samurai/static/js/runtime-main.249b059d.js.map",
+    "static/js/2.653e2e63.chunk.js": "/Demo-samurai/static/js/2.653e2e63.chunk.js",
+    "static/js/2.653e2e63.chunk.js.map": "/Demo-samurai/static/js/2.653e2e63.chunk.js.map",
+    "static/css/3.a8eddd92.chunk.css": "/Demo-samurai/static/css/3.a8eddd92.chunk.css",
+    "static/js/3.bbdfffc2.chunk.js": "/Demo-samurai/static/js/3.bbdfffc2.chunk.js",
+    "static/js/3.bbdfffc2.chunk.js.map": "/Demo-samurai/static/js/3.bbdfffc2.chunk.js.map",
+    "static/css/4.21408a6b.chunk.css": "/Demo-samurai/static/css/4.21408a6b.chunk.css",
+    "static/js/4.5e8b5c10.chunk.js": "/Demo-samurai/static/js/4.5e8b5c10.chunk.js",
+    "static/js/4.5e8b5c10.chunk.js.map": "/Demo-samurai/static/js/4.5e8b5c10.chunk.js.map",
+    "static/css/5.01b48042.chunk.css": "/Demo-samurai/static/css/5.01b48042.chunk.css",
+    "static/js/5.efc4c181.chunk.js": "/Demo-samurai/static/js/5.efc4c181.chunk.js",
+    "static/js/5.efc4c181.chunk.js.map": "/Demo-samurai/static/js/5.efc4c181.chunk.js.map",
+    "index.html": "/Demo-samurai/index.html",
+    "static/css/3.a8eddd92.chunk.css.map": "/Demo-samurai/static/css/3.a8eddd92.chunk.css.map",
+    "static/css/4.21408a6b.chunk.css.map": "/Demo-samurai/static/css/4.21408a6b.chunk.css.map",
+    "static/css/5.01b48042.chunk.css.map": "/Demo-samurai/static/css/5.01b48042.chunk.css.map",
+    "static/css/main.1ae7170d.chunk.css.map": "/Demo-samurai/static/css/main.1ae7170d.chunk.css.map",
+    "static/js/2.653e2e63.chunk.js.LICENSE.txt": "/Demo-samurai/static/js/2.653e2e63.chunk.js.LICENSE.txt",
+    "static/js/4.5e8b5c10.chunk.js.LICENSE.txt": "/Demo-samurai/static/js/4.5e8b5c10.chunk.js.LICENSE.txt",
+    "static/media/logo.e148933d.png": "/Demo-samurai/static/media/logo.e148933d.png",
+    "static/media/preloader.8bf71cec.gif": "/Demo-samurai/static/media/preloader.8bf71cec.gif"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.249b059d.js",
+    "static/js/2.653e2e63.chunk.js",
+    "static/css/main.1ae7170d.chunk.css",
+    "static/js/main.4b492cd6.chunk.js"
+  ]
+}
