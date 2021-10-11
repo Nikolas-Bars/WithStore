@@ -1,6 +1,7 @@
 import React from "react";
 import s from './Users.module.css'
 import {NavLink} from "react-router-dom";
+import hacker from './../../img/hacker.png'
 
 
 const User = ({user, followingProgress, unfollowThunk, followThunk}) => {
@@ -10,7 +11,7 @@ const User = ({user, followingProgress, unfollowThunk, followThunk}) => {
             <div>
                 <NavLink to={'/profile/' + u.id}>
                     <img
-                        src={u.photos.small != null ? u.photos.small : "https://help.flbord.com/s/cache/81/11/8111068c8d4aae0d7bbbc2d8c7ff7453.png"}
+                        src={u.photos.small != null ? u.photos.small : hacker}
                         className={s.img1}/>
                 </NavLink>
             </div>

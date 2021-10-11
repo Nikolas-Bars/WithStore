@@ -2,16 +2,16 @@ import React from 'react';
 import Profile from "./Profile";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
-import {getStatusThunk, getUserProfile, updateStatusThunk} from "../../redux/profile-reducer";
+import {getStatusThunk, getUserProfile, savePhoto, updateStatusThunk} from "../../redux/profile-reducer";
 import {compose} from "redux";
 
 
 class ProfileContainer extends React.Component {
 
-    componentDidMount() {
+    refreshProfile(){
 
         let userId = this.props.match.params.userId
-        if (!userId){ // если userId отсутствует то мы присваиваем ей значение 2
+        if (!userId){ //
             userId = this.props.authorizedUserId
             if(!userId){
                 this.props.history.push('/login')
@@ -19,15 +19,30 @@ class ProfileContainer extends React.Component {
         }
         this.props.getUserProfile(userId)
         this.props.getStatusThunk(userId)
+    }
+
+    componentDidMount() {
+        this.refreshProfile()
 }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
 
+        if(this.props.match.params.userId !== prevProps.match.params.userId){
+        this.refreshProfile()
+        }
+    }
 
-    render(){
-         return (
-       <Profile {...this.props} profile={this.props.profile} status={this.props.status} updateStatusThunk={this.props.updateStatusThunk}/>
-    );
-}}
+    render() {
+        return (
+            <Profile {...this.props}
+                     savePhoto={this.props.savePhoto} // savePhoto - это санка
+                     isOwner={!this.props.match.params.userId}
+                     profile={this.props.profile}
+                     status={this.props.status}
+                     updateStatusThunk={this.props.updateStatusThunk}/>
+        );
+    }
+}
 
 let mapStateToProps =(state)=> {
     return{
@@ -38,4 +53,4 @@ let mapStateToProps =(state)=> {
     }
 }
 
-export default compose(connect (mapStateToProps, {getUserProfile, getStatusThunk, updateStatusThunk}), withRouter)(ProfileContainer) ;
+export default compose(connect (mapStateToProps, {getUserProfile, getStatusThunk, updateStatusThunk, savePhoto}), withRouter)(ProfileContainer) ;
