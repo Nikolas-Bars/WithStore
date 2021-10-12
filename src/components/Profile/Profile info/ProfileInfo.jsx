@@ -6,7 +6,7 @@ import hacker from './../../../img/hacker.png'
 import ProfileDataForm from "./ProfileDataForm";
 
 
-const ProfileInfo = ({profile, status, updateStatusThunk, isOwner, savePhoto}) =>{
+const ProfileInfo = ({profile, status, updateStatusThunk, isOwner, savePhoto, saveProfile}) =>{
 
     const [editMode, setEditMode] = useState(false)
 
@@ -21,11 +21,11 @@ const ProfileInfo = ({profile, status, updateStatusThunk, isOwner, savePhoto}) =
     }
 
     const onEditMode =()=> {
-        debugger
         setEditMode(!editMode)
     }
     const onSubmit =(formData)=>{
-        console.log(formData)
+            saveProfile(formData)
+            setEditMode(false)
     }
 
     return  (
@@ -40,7 +40,7 @@ const ProfileInfo = ({profile, status, updateStatusThunk, isOwner, savePhoto}) =
 
 
                 {editMode
-                    ? <ProfileDataForm profile={profile} goToEditMode={onEditMode} isOwner={isOwner} onSubmit={onSubmit}/>
+                    ? <ProfileDataForm initialValues={profile} profile={profile} goToEditMode={onEditMode} isOwner={isOwner} onSubmit={onSubmit}/>
                     : <ProfileData profile={profile} editMode={editMode} goToEditMode={onEditMode} isOwner={isOwner}/>  }
 
 
@@ -66,7 +66,7 @@ export const ProfileData =({profile, editMode, goToEditMode, isOwner})=>{
             </div>
 
             <div>
-                <b>Ищу ли я работу?</b>{profile.lookingForAJob ? <h3>Нет</h3> : <span>      ДА</span> }
+                <b>Ищу ли я работу?</b>{profile.lookingForAJob ? <span>      ДА</span> : <span>Нет</span> }
             </div>
 
             <div>

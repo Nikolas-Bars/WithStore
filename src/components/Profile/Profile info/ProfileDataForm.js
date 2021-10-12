@@ -1,14 +1,15 @@
 import React from "react";
 import {Contact} from "./ProfileInfo";
+import s from "./ProfileInfo.module.css"
 import {CreateField, Input, textArea} from "../../common/FormsControls/FormsControls";
 import {required} from "../../../utils/validators/validators";
 import {reduxForm} from "redux-form";
 
-const ProfileDataForm =({handleSubmit, onSubmit})=>{
+const ProfileDataForm =({handleSubmit, profile})=>{
     return (
         <form onSubmit={handleSubmit}>
 
-            <button onClick={onSubmit}>Save</button>
+            <button>Save</button>
 
             <div>
                 <b>aFull name:</b>  {CreateField('Full name','fullName', Input,[required])}
@@ -25,7 +26,13 @@ const ProfileDataForm =({handleSubmit, onSubmit})=>{
             <div>
                 <b>Немного обо мне:</b> {CreateField('Немного обо мне:', 'aboutMe', textArea)}
             </div>
-
+            <div>КОНТАКТЫ:
+                  <b>{Object.keys(profile.contacts).map(k => {
+                    return <div className={s.contact}>
+                        <b>{k}{CreateField(k,'contacts.' + k, Input,)}</b>
+                    </div>
+                } )}</b>
+            </div>
 
 
 

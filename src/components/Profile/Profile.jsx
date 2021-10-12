@@ -9,7 +9,7 @@ const Profile = (props) => {
 
  return (
         <div className={s.profile}>
-            <ProfileInfo isOwner={props.isOwner} profile={props.profile} status={props.status} updateStatusThunk={props.updateStatusThunk} savePhoto={props.savePhoto}/>
+            <ProfileInfo isOwner={props.isOwner} profile={props.profile} status={props.status} updateStatusThunk={props.updateStatusThunk} savePhoto={props.savePhoto} saveProfile={props.saveProfile}/>
             <MyPostsContainer store={props.store} /> {/*state в пропсе ЭТО УЖЕ profilePage -/*передаем в props MyPosts массив posts*/}
         </div>
     );

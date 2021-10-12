@@ -7,6 +7,8 @@ const SET_USER_PROFILE = 'SET_USER_PROFILE'
 const SET_STATUS = 'SET_STATUS'
 const DELETE_POST = 'DELETE_POST'
 const SAVE_PHOTO_SUCCESS = 'SAVE_PHOTO_SUCCESS'
+const SAVE_PROFILE = 'SAVE_PROFILE'
+
 
 let initialState = {
     profile: null,
@@ -39,6 +41,13 @@ const profileReducer = (state = initialState, action) => { // присвоили
 
                 ...state,
                 profile: {...state.profile, photos: action.photos}
+            }
+        }
+        case SAVE_PROFILE: {
+            debugger
+            return{
+                ...state,
+                profile: action.profile
             }
         }
         case UP_TEXT: {
@@ -74,6 +83,7 @@ export const setStatus =(status)=>({type: SET_STATUS, status})
 export const deletePost =(number)=>({type: DELETE_POST, id: number})
 export const savePhotoSuccess =(photos)=>({type: SAVE_PHOTO_SUCCESS, photos})
 export const UPTEXTActionCreator =(text) => ({type: UP_TEXT, text: text})
+export const saveProfileSuccess =(profile) => ({type: SAVE_PROFILE, profile})
 
 // export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile})
 export const getUserProfile = (userId) => async (dispatch) => {
@@ -95,13 +105,21 @@ export const updateStatusThunk = (status) => async (dispatch) =>{
         }
 }
 
-export const savePhoto =(file)=> async (dispatch) =>{
+export const savePhoto = (file) => async (dispatch) => {
     let response = await ProfileAPI.savePhoto(file)
-    debugger
-    if(response.data.resultCode === 0){
-        debugger
+    if (response.data.resultCode === 0) {
         dispatch(savePhotoSuccess(response.data.data.photos))
     }
 }
+
+export const saveProfile = (profile) => async (dispatch, getState) =>{
+    const userID = getState().auth.id
+    const response = await ProfileAPI.saveProfile(profile)
+    debugger
+    if(response.data.resultCode === 0){
+        dispatch(getUserProfile(userID))
+    }
+}
+
 
 export default profileReducer;
