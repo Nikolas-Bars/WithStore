@@ -53,8 +53,8 @@ export const authAPI = {
             withCredentials: true
         })
     },
-    login(email, password, rememberMe){
-        return instance.post(`auth/login`, {email, password, rememberMe})
+    login(email, password, rememberMe, captcha){
+        return instance.post(`auth/login`, {email, password, rememberMe, captcha})
 
     },
     logout (){
@@ -65,5 +65,11 @@ export const authAPI = {
 export const loginAPI = {
     login(){
         return instance.post(`/auth/login`)
+    }
+}
+
+export const securityAPI = {
+    captcha(){
+        return instance.get(`security/get-captcha-url`)
     }
 }

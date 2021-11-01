@@ -1,5 +1,5 @@
 import React from 'react'
-import {ADD_COMPOSITION_ActionCreator} from "../../redux/music-reducer";
+import { ADD_COMPOSITION_ActionCreator } from "../../redux/music-reducer";
 import Music from "./Music";
 import {connect} from "react-redux";
 

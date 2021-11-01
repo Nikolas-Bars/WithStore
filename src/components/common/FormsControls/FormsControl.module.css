@@ -10,7 +10,9 @@
     font-weight: bold;
 }
 .FormSummuryError{
-
+    border: 1px solid red;
+    margin-top: 15px;
+    margin-bottom: 15px;
     padding: 5px;
     color: red;
 

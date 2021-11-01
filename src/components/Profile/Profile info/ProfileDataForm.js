@@ -4,12 +4,17 @@ import s from "./ProfileInfo.module.css"
 import {CreateField, Input, textArea} from "../../common/FormsControls/FormsControls";
 import {required} from "../../../utils/validators/validators";
 import {reduxForm} from "redux-form";
+import styles from './../../common/FormsControls/FormsControl.module.css'
 
-const ProfileDataForm =({handleSubmit, profile})=>{
+const ProfileDataForm =({handleSubmit, profile, error})=>{
     return (
         <form onSubmit={handleSubmit}>
 
             <button>Save</button>
+
+            {error && <div className={styles.FormSummuryError}>
+                {error}
+            </div>}
 
             <div>
                 <b>aFull name:</b>  {CreateField('Full name','fullName', Input,[required])}
@@ -28,7 +33,7 @@ const ProfileDataForm =({handleSubmit, profile})=>{
             </div>
             <div>КОНТАКТЫ:
                   <b>{Object.keys(profile.contacts).map(k => {
-                    return <div className={s.contact}>
+                    return <div key={k} className={s.contact}>
                         <b>{k}{CreateField(k,'contacts.' + k, Input,)}</b>
                     </div>
                 } )}</b>

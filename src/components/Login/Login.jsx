@@ -10,7 +10,8 @@ import s from '../common/FormsControls/FormsControl.module.css'
 const maxLengthCreators = maxLengthCreator(20)
 const minLengthCreators = minLengthCreator(5)
 
-const LoginForm = ({handleSubmit, error}) => {
+const LoginForm = ({handleSubmit, error, captchaUrl}) => {
+
     return (
            <form onSubmit={handleSubmit}>
                {CreateField('Email','email', Input,[required, maxLengthCreators, minLengthCreators]  )}
@@ -20,6 +21,9 @@ const LoginForm = ({handleSubmit, error}) => {
                {error && <div className={s.FormSummuryError}>
                    {error}
                </div>}
+
+               {captchaUrl ? <div> <img src={captchaUrl} /> {CreateField('captcha','captcha', Input,[required])} </div> : null}
+
                 <div>
                     <button>Login</button>
                 </div>
@@ -34,7 +38,7 @@ const Login = (props) => {
 
     const onSubmit=(formData)=>{
 
-        props.login(formData.email, formData.password, formData.rememberMe)
+        props.login(formData.email, formData.password, formData.rememberMe, formData.captcha)
     }
 
     if(props.isAuth){
@@ -44,13 +48,16 @@ const Login = (props) => {
     return (
         <div>
             <h1>Login</h1>
-            <ReduxLoginForm onSubmit={onSubmit}/>
+            <ReduxLoginForm onSubmit={onSubmit} captchaUrl={props.captchaUrl}/>
+
         </div>
     )
 }
 
 let mapStateToProps = (state)=>({
-        isAuth: state.auth.isAuth
+        isAuth: state.auth.isAuth,
+    captchaUrl: state.auth.captchaUrl
+
     })
 
 export default connect(mapStateToProps, {login})(Login) // null вместо mapStateToProps и login вместо mapDispatchToProps

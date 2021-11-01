@@ -1,7 +1,6 @@
 const ADD_COMPOSITION = 'ADD-COMPOSITION';
 
 let initialState = {
-
     music: [
         {}
         ]

@@ -12,7 +12,7 @@ let minLength = minLengthCreator(5)
 function MyPosts(props) {             /*в пропсе массив posts который прошел через index - app - profile*/
     console.log('componentDidUpdateYO')
     let postsElement =
-        [...props.posts].reverse().map(p => <Post message={p.message} likeCounts={p.likeCounts}/>)
+        [...props.posts].reverse().map(p => <Post key={p.id} message={p.message} likeCounts={p.likeCounts}/>)
 
     let OnAddPost = (jopa) => {
         props.addPost(jopa.MyPostTextarea)
